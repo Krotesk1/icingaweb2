@@ -475,47 +475,44 @@ input[type=text].search-input {
   margin-right: 0;
 }
 
-#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item.active .nav-level-2 > li,
-#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item:not(.active).hover .nav-level-2 > li {
-  &.badge-nav-item {
+// Fix Icinga DB badge nav items
+#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item.active .nav-level-2 > .nav-item,
+#layout.sidebar-collapsed #menu .nav-level-1 > .nav-item.hover .nav-level-2 > .nav-item,
+#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item.hover .nav-level-2 > .nav-item {
+  &.has-badge {
     display: flex;
     align-items: center;
-  }
 
-  &.badge-nav-item a:not(.badge) {
-    flex: 1 1 auto;
-    width: 0;
-  }
+    a:not(.badge) {
+      flex: 1 1 auto;
+      width: 0;
+    }
 
-  &.badge-nav-item a.badge {
-    color: white;
-    flex: 0 1 auto;
-    margin-right: 1em;
-    padding: .25em;
-    width: auto;
-
-    &:hover {
-      opacity: .6;
+    a.badge {
+      color: white;
+      flex: 0 1 auto;
+      margin-right: 1em;
+      padding: .25em;
+      width: auto;
     }
   }
 }
 
-#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item.active .nav-level-2 > li {
-  &.badge-nav-item:not(.selected) {
-    &:hover {
-      background-color: darken(@menu-bg-color, 20);
-
-      a {
-        color: white;
-      }
-    }
+.nav-level-1 > .nav-item .nav-level-2 .nav-item:not(.selected).has-badge {
+  &:hover {
+    background-color: @tr-active-color;
   }
 }
 
-#layout:not(.sidebar-collapsed) #menu .nav-level-1 > .nav-item:not(.active).hover .nav-level-2 > li {
-  &.badge-nav-item {
-    &:hover {
-      background-color: lighten(@icinga-blue, 80);
-    }
+#layout:not(.sidebar-collapsed) .nav-level-1 > .nav-item.active .nav-level-2 .nav-item:not(.selected).has-badge {
+  &:hover {
+    background-color: darken(@menu-active-bg-color, 20);
+  }
+}
+
+.nav-level-2 .nav-item:not(.selected).has-badge {
+  a:not(.badge),
+  a:not(.badge):hover {
+    background-color: transparent;
   }
 }
